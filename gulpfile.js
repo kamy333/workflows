@@ -7,7 +7,6 @@ gutil=require('gulp-util'),
 coffee=require('gulp-coffee'),
 compass=require('gulp-compass'),
 concat=require('gulp-concat'),
-
     browserify=require('gulp-browserify');
 
 
@@ -39,8 +38,15 @@ gulp.task('compass',function () {
         .pipe(compass({
             sass:'components/sass',
             image:'builds/development/images',
-            style:'expanded'
+            style:'expanded',
+            comments:true
         }))
         .on('error',gutil.log)
         .pipe(gulp.dest('builds/development/css'))
 });
+
+gulp.task('default',['coffee','js','compass'],function () {
+    gutil.log('coffee js compass processed successfully!');
+
+});
+
